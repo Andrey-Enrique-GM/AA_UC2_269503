@@ -7,6 +7,7 @@ public class Ordenamientos
 {
     
     
+    // ===      ORDENAMIENTO BURBUJA         ==============================================
     public static void burbuja(int[] arreglo) {
 
         int n = arreglo.length; // tamaño del arreglo
@@ -53,6 +54,8 @@ public class Ordenamientos
     }
     
     
+    
+    // ===      ORDENAMIENTO POR SELECCION         ========================================
     public static void seleccion(int[] arreglo) {
 
         int n = arreglo. length;
@@ -98,6 +101,53 @@ public class Ordenamientos
         Complejidad temporal:
         O(n^2)
         */        
+    }
+    
+    // ===      ORDENAMIENTO POR INSERCION         =========================================
+    public static void insercion(int[] arreglo) {
+
+        int n = arreglo.length; // tamaño del arreglo
+        // 1 operacion
+
+        for (int i = 1; i < n; i++) { // ciclo exterior
+        // Este ciclo se ejecuta (n-1) veces
+
+            int clave = arreglo[i];
+            // asignacion
+
+            int j = i - 1;
+            // asignacion
+
+            while (j >= 0 && arreglo[j] > clave) { 
+            // comparacion entre elementos
+
+                arreglo[j + 1] = arreglo[j];
+                // asignacion (desplazamiento)
+                
+                j = j - 1;
+                // asignacion
+            }
+            
+            arreglo[j + 1] = clave;
+            // asignacion (insercion del elemento)
+        }
+
+        /*
+            Total de comparaciones:
+            (n-1) + (n-2) + ... + 1
+
+            Resultado:
+            n(n-1)/2
+
+            Número maximo de desplazamientos:
+            n(n-1)/2
+
+            Expresion aproximada del algoritmo:
+            T(n) = an^2 + bn + c
+
+            Complejidad temporal:
+            O(n^2)
+            */
     }
     
     
