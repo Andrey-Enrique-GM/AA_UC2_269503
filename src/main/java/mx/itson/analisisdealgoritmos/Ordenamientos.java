@@ -103,6 +103,8 @@ public class Ordenamientos
         */        
     }
     
+    
+    
     // ===      ORDENAMIENTO POR INSERCION         =========================================
     public static void insercion(int[] arreglo) {
 
@@ -148,6 +150,53 @@ public class Ordenamientos
             Complejidad temporal:
             O(n^2)
             */
+    }
+    
+    
+    
+    // ===      ORDENAMIENTO RAPIDO (QUICKSORT)         =========================================
+    public static void quicksort(int[] arreglo) {
+        if (arreglo == null || arreglo.length <= 1) {
+            return; // Si el arreglo está vacío o tiene un elemento, ya está ordenado
+        }
+        quicksortRecursivo(arreglo, 0, arreglo.length - 1);
+        
+        /*
+        Complejidad temporal (Caso Promedio / Mejor caso): 
+        O(n log n) - El pivote divide el arreglo en mitades proporcionales.
+        
+        Complejidad temporal (Peor caso): 
+        O(n^2) - Ocurre si el pivote siempre es el elemento mayor o menor.
+        */
+    }
+
+    // eétodo recursivo privado
+    private static void quicksortRecursivo(int[] arr, int inicio, int fin) {
+        if (inicio < fin) {
+            int pivoteIndice = particion(arr, inicio, fin);
+            quicksortRecursivo(arr, inicio, pivoteIndice - 1);
+            quicksortRecursivo(arr, pivoteIndice + 1, fin);
+        }
+    }
+
+    // Metodo de particion privado
+    private static int particion(int[] arr, int inicio, int fin) {
+        int pivote = arr[fin];
+        int i = inicio - 1;
+
+        for (int j = inicio; j < fin; j++) {
+            if (arr[j] < pivote) {
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[fin]; 
+        arr[fin] = temp;
+
+        return i + 1;
     }
     
     

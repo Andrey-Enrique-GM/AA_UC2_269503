@@ -22,6 +22,7 @@ public class Main
         System.out.println("1.- Burbuja");
         System.out.println("2.- Seleccion");
         System.out.println("3.- Insercion");
+        System.out.println("4.- Quicksort");
 
         int opcion = scanner.nextInt();
 
@@ -37,8 +38,12 @@ public class Main
         else if (opcion == 3) {
             Ordenamientos.insercion(arreglo);
         } 
+        else if (opcion == 4){
+            Ordenamientos.quicksort(arreglo);
+        }
         else {
             System.out.println("Opcion no valida");
+            scanner.close();
             return;
         }
 
@@ -52,6 +57,8 @@ public class Main
             System.out.print(num + ", ");
         }
        
+        scanner.close();
+        
     }
     
     
