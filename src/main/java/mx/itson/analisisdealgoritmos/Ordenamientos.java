@@ -170,7 +170,7 @@ public class Ordenamientos
         */
     }
 
-    // eétodo recursivo privado
+    // Metodo recursivo privado
     private static void quicksortRecursivo(int[] arr, int inicio, int fin) {
         if (inicio < fin) {
             int pivoteIndice = particion(arr, inicio, fin);
@@ -197,6 +197,66 @@ public class Ordenamientos
         arr[fin] = temp;
 
         return i + 1;
+    }
+    
+    
+    
+    // ===      ORDENAMIENTO POR MEZCLA (MERGE SORT)         =========================================
+    public static void mergeSort(int[] arreglo) {
+        if (arreglo == null || arreglo.length <= 1) return;
+        
+        // Se crea un arreglo auxiliar para no crear multiples arreglos en cada division
+        int[] temporal = new int[arreglo.length];
+        mergeSortRecursivo(arreglo, temporal, 0, arreglo.length - 1);
+        
+        /* Complejidad temporal: O(n log n) en todos los casos.
+        Complejidad espacial: O(n) debido al arreglo temporal.
+        */
+    }
+
+    private static void mergeSortRecursivo(int[] arreglo, int[] temporal, int inicio, int fin) {
+        if (inicio < fin) {
+            // Se calcula el punto medio para dividir el problema
+            int medio = inicio + (fin - inicio) / 2;
+
+            // Llamadas recursivas para dividir el arreglo
+            mergeSortRecursivo(arreglo, temporal, inicio, medio);
+            mergeSortRecursivo(arreglo, temporal, medio + 1, fin);
+
+            // Se fusionan las dos mitades ordenadas
+            mezclar(arreglo, temporal, inicio, medio, fin);
+        }
+    }
+
+    private static void mezclar(int[] arreglo, int[] temporal, int inicio, int medio, int fin) {
+        // Copiar los datos al arreglo temporal para comparar
+        for (int i = inicio; i <= fin; i++) {
+            temporal[i] = arreglo[i];
+        }
+
+        int i = inicio;      // Indice para la mitad izquierda
+        int j = medio + 1;   // Indice para la mitad derecha
+        int k = inicio;      // Indice para el arreglo original
+
+        // Comparar elementos de ambas mitades y mover el menor al original
+        while (i <= medio && j <= fin) {
+            if (temporal[i] <= temporal[j]) {
+                arreglo[k] = temporal[i];
+                i++;
+            } else {
+                arreglo[k] = temporal[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Si sobran elementos en la mitad izquierda, se copian
+        while (i <= medio) {
+            arreglo[k] = temporal[i];
+            k++;
+            i++;
+        }
+        // * Los de la derecha no necesitan copiarse porque ya estan ahi
     }
     
     

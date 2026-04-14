@@ -23,6 +23,7 @@ public class Main
         System.out.println("2.- Seleccion");
         System.out.println("3.- Insercion");
         System.out.println("4.- Quicksort");
+        System.out.println("5.- Mergesort");
 
         int opcion = scanner.nextInt();
 
@@ -40,6 +41,9 @@ public class Main
         } 
         else if (opcion == 4){
             Ordenamientos.quicksort(arreglo);
+        }
+        else if (opcion == 5){
+            Ordenamientos.mergeSort(arreglo);
         }
         else {
             System.out.println("Opcion no valida");
